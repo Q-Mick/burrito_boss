@@ -1,0 +1,59 @@
+:root{
+  --bg-grad: (90deg, rgba(46,151,191,1) 15%, rgba(97,202,238,1) 37%, rgba(37,223,196,1) 73%)
+   }
+
+body{
+  background-image: url("assets/burrito_cactus.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%; 
+}
+
+.card-hov:hover{
+  /* height: 15rem; */
+  background-color:#1ed6a5;
+  outline: 2px solid black;;
+  filter: drop-shadow(10px 10px 35px black);
+}
+
+.glass-stats{
+  background: rgba(15, 15, 15, 0.354);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.1px);
+  -webkit-backdrop-filter: blur(8.1px);
+  border: 1px solid rgba(15, 15, 15, 0.26);
+  width: 100%;
+  height: 35rem;
+}
+
+.glass-upgrades{
+  background: rgba(15, 15, 15, 0.354);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.1px);
+  -webkit-backdrop-filter: blur(8.1px);
+  border: 1px solid rgba(15, 15, 15, 0.26);
+  height: 27vh;
+}
+
+.burrito-main{
+  width: 20rem;
+}
+.burrito-time-gif{
+  width: 30rem;
+}
+
+.btn-custom{
+  /* height: 15px; */
+  background-color: var(--bs-primary);
+  font-size: 12px;
+}
+/* upgrade specific classes */
+.upgrade-cols{
+  height: 50%;
+  width: 50%;
+}
+.tecate{
+  height: 18rem;
+
+}

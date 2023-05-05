@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Burrito Time</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.2.96/css/materialdesignicons.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="debug">
+    <style>
+      body.debug .container,
+      body.debug .container-fluid {
+        outline: 2px double blue;
+        outline-offset: -2px;
+      }
+
+      body.debug .row {
+        outline: 2px dashed red;
+        outline-offset: -2px;
+      }
+
+      body.debug [class*="col-"] {
+        outline: 2px dotted forestgreen;
+        outline-offset: -3px;
+      }
+    </style>
+
+    <main class="container-fluid">
+      <!-- SECTION this is the top game section start -->
+      <div class="row">
+        <!-- upgrade and gif window -->
+        <div class="col-4">
+          <div class="row" style="height: 100%">
+            <div class="col-6 upgrade-cols" id="">
+              <img
+                id="upgrade-tecate"
+                class="img-fluid p-2 d-flex align-items-center tecate"
+                src="assets/tecate.gif"
+                alt="tecate"
+              />
+            </div>
+            <div class="col-6 upgrade-cols" id="level-up">
+              <img id="level-up-img" class="img-fluid p-2" src="" alt="" />
+            </div>
+            <div
+              class="col-6 upgrade-cols d-flex align-items-center"
+              id="upgrade3"
+            >
+              <img
+                class="img-fluid p-2 rounded-4"
+                src="assets/chancla.gif"
+                alt=""
+              />
+            </div>
+            <div
+              class="col-6 upgrade-cols d-flex align-items-center"
+              id="upgrade1"
+            >
+              <img
+                class="img-fluid p-2 rounded-4"
+                src="assets/assistant.gif"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+        <!-- upgrade and gif window -->
+        <!-- SECTION main burrito click and gifs -->
+        <div
+          class="col-4 d-flex flex-column align-items-center justify-content-between"
+        >
+          <img class="burrito-time-gif m-1" src="assets/burrito_time.gif" alt="" />
+          <img class="burrito-main m-2" src="assets/burrito_main.gif" alt="" />
+          <!-- progress bar -->
+      
+          <!-- progress bar end -->
+        </div>
+        <!-- end burrito section -->
+        <!-- SECTION stat tracker -->
+        <div class="col-4 d-flex">
+          <div class="glass-stats m-3 rounded-1 text-white">
+            <p class="ps-2 fs-2">Level: <span id="level-tracker"></span>1</p>
+            <p class="ps-2 fs-2">
+              Burrito Bucks: $<span id="level-tracker"></span>1
+            </p>
+          </div>
+        </div>
+        <!-- END stat tracker -->
+      </div>
+      <!-- this is the end of top game section -->
+
+      <!-- upgrade tracker and bottom half-->
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+          
+            
+              <div
+                id="progress-bar"
+                class="progress p-0"
+                role="progressbar"
+                aria-label="Animated striped example"
+                aria-valuenow="75"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              >
+              <!-- PROGRESS BAR TEMPLATE  id="progress-bar"-->
+                <div
+                  class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                  style="width: 75%"
+                ></div>
+                <!-- PROGRESS BAR TEMPLATE END-->
+              </div>
+            
+         
+        </div>
+        <div class="col-4"></div>
+      </div>
+      <div class="row p-3 text-white">
+        <div class="col-12">
+          <div class="row">
+            <div class="glass-upgrades rounded-2">
+              <div class="col-12">
+                <p class="fs-3 text-center">Upgrades!</p>
+              </div>
+              <!-- assets for shop goes here code goes here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
