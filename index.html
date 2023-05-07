@@ -11,14 +11,15 @@
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous"
     />
-    <link
+    <!-- <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.2.96/css/materialdesignicons.min.css"
-    />
+    /> -->
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body class="debug">
+  <body class="">
     <style>
+
       body.debug .container,
       body.debug .container-fluid {
         outline: 2px double blue;
@@ -36,6 +37,12 @@
       }
     </style>
 
+    <header class="container-fluid">
+      <!-- <div class="row">
+        <div class="col-12 d-flex justify-content-center align-items-center">Click here if you love Burritos! <div class=""></div> </div>
+      </div> -->
+    </header>
+
     <main class="container-fluid">
       <!-- SECTION this is the top game section start -->
       <div class="row">
@@ -45,30 +52,32 @@
             <div class="col-6 upgrade-cols" id="">
               <img
                 id="upgrade-tecate"
-                class="img-fluid p-2 d-flex align-items-center tecate"
+                class="img-fluid align-items-center tecate p-2"
                 src="assets/tecate.gif"
                 alt="tecate"
               />
             </div>
-            <div class="col-6 upgrade-cols" id="level-up">
-              <img id="level-up-img" class="img-fluid p-2" src="" alt="" />
+            <!-- this is the level up window which will show random gifs on level up -->
+            <div class="col-6 upgrade-cols d-flex align-items-center" id="level-up">
+              <!-- <img id="" class="img-fluid p-2" src="" alt="" /> -->
             </div>
             <div
               class="col-6 upgrade-cols d-flex align-items-center"
-              id="upgrade3"
+              
             >
               <img
-                class="img-fluid p-2 rounded-4"
+              id="upgrade-chancla"
+                class="img-fluid chancla rounded-4 p-2"
                 src="assets/chancla.gif"
                 alt=""
               />
             </div>
             <div
               class="col-6 upgrade-cols d-flex align-items-center"
-              id="upgrade1"
             >
               <img
-                class="img-fluid p-2 rounded-4"
+                id="upgrade-assistant"
+                class="img-fluid assistant rounded-4 p-2"
                 src="assets/assistant.gif"
                 alt=""
               />
@@ -80,67 +89,100 @@
         <div
           class="col-4 d-flex flex-column align-items-center justify-content-between"
         >
-          <img class="burrito-time-gif m-1" src="assets/burrito_time.gif" alt="" />
-          <img class="burrito-main m-2" src="assets/burrito_main.gif" alt="" />
-          <!-- progress bar -->
-      
+          <img
+            class="burrito-time-gif m-1"
+            src="assets/burrito_time.gif"
+            alt=""
+          />
+          <img onclick="rollBurrito()" class="burrito-main m-2" src="assets/burrito_main.gif" alt="" />
+          
           <!-- progress bar end -->
         </div>
         <!-- end burrito section -->
         <!-- SECTION stat tracker -->
         <div class="col-4 d-flex">
-          <div class="glass-stats m-3 rounded-1 text-white">
-            <p class="ps-2 fs-2">Level: <span id="level-tracker"></span>1</p>
-            <p class="ps-2 fs-2">
-              Burrito Bucks: $<span id="level-tracker"></span>1
-            </p>
+          <div class="glass-stats rounded-1 m-3 text-white">
+            <!-- target id=stats inner html to draw all stats at once -->
+            <div id="stats" class="">
+              <p class="fs-4 ps-2">Level: <span id="level">1</span></p>
+              <p class="fs-4 ps-2">
+                Burrito bucks: $<span id="money">0</span>
+              </p>
+              <p class="fs-4 ps-2">
+                Click multiplier  <span id="click-multiplier">1</span>x
+              </p>
+              <p class="fs-4 ps-2">
+                Burritos per click: <span id="bpc">1</span>
+              </p>
+              <p class="fs-4 ps-2">
+                Auto burritos per click: <span id="auto-assist">0</span>
+              </p>
+              <p class="fs-4 ps-2">
+                Time Remaining: <span id="time-remaining">0</span>
+              </p>
+            </div>
+            <button id="btn-start" class="btn btn-primary m-3" onclick="startGame()">Start</button>
           </div>
+        </div>
         </div>
         <!-- END stat tracker -->
       </div>
       <!-- this is the end of top game section -->
-
-      <!-- upgrade tracker and bottom half-->
+      
+      <!-- progress bar -->
       <div class="row">
         <div class="col-4"></div>
         <div class="col-4">
-          
-            
-              <div
-                id="progress-bar"
-                class="progress p-0"
-                role="progressbar"
-                aria-label="Animated striped example"
-                aria-valuenow="75"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              >
-              <!-- PROGRESS BAR TEMPLATE  id="progress-bar"-->
-                <div
-                  class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                  style="width: 75%"
-                ></div>
-                <!-- PROGRESS BAR TEMPLATE END-->
-              </div>
-            
-         
-        </div>
-        <div class="col-4"></div>
+          <div class="progress" role="progressbar" aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+            <div id="progress-bar" class="progress-bar progress-bar-striped bg-success" style="width: 100%"></div>
+          </div>
+        <!-- PROGRESS BAR TEMPLATE END-->
       </div>
-      <div class="row p-3 text-white">
-        <div class="col-12">
-          <div class="row">
-            <div class="glass-upgrades rounded-2">
-              <div class="col-12">
-                <p class="fs-3 text-center">Upgrades!</p>
+      <div class="col-4"></div>
+    </div>
+    <div class="row p-3 text-white">
+      <div class="col-12">
+        <div class="row">
+          <div class="glass-upgrades rounded-2">
+            <div class="col-12">
+              <!-- upgrade tracker and bottom half-->
+              <p class="fs-3 text-center">Upgrades!</p>
+            </div>
+            <!-- assets for shop goes here code goes here -->
+            <div class="row">
+              <div class="col-3 d-flex ">
+                <button class="btn btn-custom" onclick="upgradeBurritoRolling()">
+                  Burrito Rolling SKill $<span id="upg1-price">50</span>
+                </button>
               </div>
-              <!-- assets for shop goes here code goes here -->
+              <div class="col-3 d-flex justify-content-between">
+                <button class="btn btn-custom" onclick="upgradeDrinkTecate()">
+                  Drink Tecate $<span id="upg2-price">200</span>
+                </button>
+              </div>
+              <div class="col-3 d-flex justify-content-between">
+                <button class="btn btn-custom" onclick="upgradeChanclaPower()">
+                  Chancla Power! $<span id="upg3-price">300</span>
+                </button>
+              </div>
+              <div class="col-3 d-flex justify-content-between">
+                <button class="btn btn-custom" onclick="upgradeTortillaMaker()">
+                  Tortilla Maker $
+                  <span id="upg4-price">1000</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
+        <!-- upgrade buttons here -->
       </div>
-    </main>
-
-    <script src="app.js"></script>
-  </body>
+    </div>
+  </main> 
+  <script src="app.js"></script>
+  <audio id="music" src="assets/Sounds/background_track.mp3"></audio>
+  <audio id="cash-register" src="assets/Sounds/cash-register.mp3"></audio>
+  <audio id="click" src="assets/Sounds/click.mp3"></audio>
+  <audio id="game-over" src="assets/Sounds/game-over.mp3"></audio>
+  
+</body>
 </html>

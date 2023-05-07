@@ -1,64 +1,43 @@
-const player =
-{
-  level: 1,
-  money: 30,
+const player = {
+  money: 10000,
   clickMultiplier: 1,
   rollingSkill: 1,
   assistantRoller: 0,
-  
+  bpc: 1,
 }
 
-const gameStats =
-{
+const game = {
+  clickCount: 0,
   level: 1,
-  timer: 30,
-  demand: 100,
-  multiplier: 1
+  timer: 15,
+  demand: 10,
+  multiplier: 1,
+  started: false,
+  debuff: 0,
+  loop: null,
+  levelProgress: 0,
+  timeremaining: 0,
 }
 
-const upgrades = [
+const upgrades = [  
   {
-    name: "assistant",
-    price: 1000,
+    name: "rolling",
+    price: 50,
     level: 0,
-    isPurchased: false,
+    bpc: 1
   },
   {
     name: "tecate",
-    price: 2,
+    price: 200,
     quantity: 0,
-    isPurchased: false,
   },
   {
     name: "chancla",
-    price: 1000,
+    price: 300,
     level: 0,
-    isPurchased: false,
   },{
     name: "rolling",
     price: 1000,
-    level: 1,
-    isPurchased: false,
+    level: 0,
   },
 ];
-
-const levelUp = [
-  {
-    Image: "assets/burrito_pup.gif"
-  },
-  {
-    Image: "assets/burrito_rub.gif"
-  },
-  {
-    Image: "assets/burrito_iwantaburrito.gif"
-  },
-]
-
-// RANDOM NUMBER FUNCTION
-
-// DRAW FUNCTIONS
-
-// UPGRADE FUNCTIONS
-
-// INTERVAL FUNCTIONS
-
