@@ -241,9 +241,7 @@ function increaseLevel() {
   }
 }
 
-// function randomGif(elementID){
-// hideItem("level-up")
-// }
+
 // SECTION
 // DRAW FUNCTIONS AND DOM MANIPULATION
 
