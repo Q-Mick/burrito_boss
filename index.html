@@ -17,7 +17,7 @@
     /> -->
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body class="">
+  <body class="" onload="drawStats()">
     <style>
 
       body.debug .container,
@@ -104,6 +104,7 @@
           <div class="glass-stats rounded-1 m-3 text-white">
             <!-- target id=stats inner html to draw all stats at once -->
             <div id="stats" class="">
+              <h1 class="text-success">BURRITO TIME</h1>
               <p class="fs-4 ps-2">Level: <span id="level">1</span></p>
               <p class="fs-4 ps-2">
                 Burrito bucks: $<span id="money">0</span>
@@ -118,10 +119,11 @@
                 Auto burritos per click: <span id="auto-assist">0</span>
               </p>
               <p class="fs-4 ps-2">
-                Time Remaining: <span id="time-remaining">0</span>
+                Time Remaining: <span class="text-danger fw-bold" id="time-remaining">0</span>
               </p>
             </div>
-            <button id="btn-start" class="btn btn-primary m-3" onclick="startGame()">Start</button>
+            <button id="btn-start" class="btn btn-primary m-3" onclick="startGame()">Start Game</button>
+            <label class="p-2">You have 30 seconds per level to roll enough burritos to meet the demand! Use upgrades to help you increase your rolling skills to roll more burritos per click. The torilla Maker will supply you many more tortillas resulting in an extra 50 burritos rolled every 3 seconds! Good Luck</label>
           </div>
         </div>
         </div>
@@ -132,9 +134,10 @@
       <!-- progress bar -->
       <div class="row">
         <div class="col-4"></div>
-        <div class="col-4">
+        <div class="col-4 text-center">
+          <p class="text-white">Burrito Demand</p>
           <div class="progress" role="progressbar" aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-            <div id="progress-bar" class="progress-bar progress-bar-striped bg-success" style="width: 100%"></div>
+            <div id="progress-bar" class="progress-bar progress-bar-striped bg-success" style="width: 0%"></div>
           </div>
         <!-- PROGRESS BAR TEMPLATE END-->
       </div>
@@ -150,26 +153,30 @@
             </div>
             <!-- assets for shop goes here code goes here -->
             <div class="row">
-              <div class="col-3 d-flex ">
+              <div class="col-3 d-flex flex-column">
                 <button class="btn btn-custom" onclick="upgradeBurritoRolling()">
-                  Burrito Rolling SKill $<span id="upg1-price">50</span>
+                  Burrito Rolling SKill $<span id="upg1-price">50</span> +1 click
                 </button>
+                <p class="fs-3">Level: <span id="upg1-level">0</span> </p>
               </div>
-              <div class="col-3 d-flex justify-content-between">
+              <div class="col-3 d-flex flex-column">
                 <button class="btn btn-custom" onclick="upgradeDrinkTecate()">
-                  Drink Tecate $<span id="upg2-price">200</span>
+                  Drink Tecate $<span id="upg2-price">200</span> +3 clicks
                 </button>
+                <p class="fs-3">Level: <span id="upg2-level">0</span> </p>
               </div>
-              <div class="col-3 d-flex justify-content-between">
+              <div class="col-3 d-flex flex-column">
                 <button class="btn btn-custom" onclick="upgradeChanclaPower()">
-                  Chancla Power! $<span id="upg3-price">300</span>
+                  Chancla Power! $<span id="upg3-price">300</span> +5 clicks
                 </button>
+                <p class="fs-3">Level: <span id="upg3-level">0</span> </p>
               </div>
-              <div class="col-3 d-flex justify-content-between">
+              <div class="col-3 d-flex flex-column">
                 <button class="btn btn-custom" onclick="upgradeTortillaMaker()">
                   Tortilla Maker $
-                  <span id="upg4-price">1000</span>
+                  <span id="upg4-price">1000</span> +50 auto clicks
                 </button>
+                <p class="fs-3">Level: <span id="upg4-level">0</span> </p>
               </div>
             </div>
           </div>
@@ -184,6 +191,7 @@
   <audio id="cash-register" src="assets/Sounds/cash-register.mp3"></audio>
   <audio id="click" src="assets/Sounds/click.mp3"></audio>
   <audio id="game-over" src="assets/Sounds/game-over.mp3"></audio>
+  <audio id="levelup-sound" src="assets/Sounds/level_up.mp3"></audio>
   
 </body>
 </html>
