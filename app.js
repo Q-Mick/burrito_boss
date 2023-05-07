@@ -1,7 +1,7 @@
 const player = {
   money: 0,
   clickMultiplier: 1,
-  rollingLevel: 1,
+  rollingSkill: 1,
   assistantRoller: 0,
   bpc: 1,
 }
@@ -32,7 +32,6 @@ const upgrades = [
     price: 200,
     level: 0,
     quantity: 0,
-    bpc: 3,
   },
   {
     name: "chancla",
