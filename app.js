@@ -227,7 +227,7 @@ function upgradeChanclaPower(){
 }
 function upgradeTortillaMaker(){
   if (upgrades[3].auto <= 0) {
-    upgrades[3].auto = 25
+    upgrades[3].auto = 50
   }
   console.log(upgrades[3].loop)
   if (player.money >= upgrades[3].price){
