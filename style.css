@@ -10,12 +10,7 @@ body{
   height: 100%; 
 }
 
-.card-hov:hover{
-  /* height: 15rem; */
-  background-color:#1ed6a5;
-  outline: 2px solid black;;
-  filter: drop-shadow(10px 10px 35px black);
-}
+
 
 .glass-stats{
   background: rgba(15, 15, 15, 0.354);
@@ -49,6 +44,7 @@ body{
   background-color: var(--bs-primary);
   font-size: 15px;
 }
+
 /* upgrade specific classes */
 .upgrade-cols{
   height: 50%;
