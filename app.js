@@ -25,13 +25,15 @@ const upgrades = [
     price: 35,
     level: 0,
     bpc: 1,
-    quantity: 0
+    quantity: 0,
+    elem: ""
   },
   {
     name: "tecate",
     price: 200,
     level: 0,
     quantity: 0,
+    elem: ""
   },
   {
     name: "chancla",
@@ -39,6 +41,7 @@ const upgrades = [
     level: 0,
     bpc: 6,
     quantity: 0,
+    elem: ""
   },
 
   {
@@ -48,7 +51,8 @@ const upgrades = [
     isPurchased: false,
     auto: 0,
     loop: 0,
-    quantity: 0
+    quantity: 0,
+    elem: ""
   },
 ]
 
@@ -126,14 +130,47 @@ function gameLoop() {
 function rollBurrito() {
   if (game.started) {
     const clickMultiplier = player.clickMultiplier
-    const clicks = 1 * clickMultiplier
+    const clicks = player.bpc * clickMultiplier
     game.clickCount += clicks
     playSound("click")
     player.money += player.bpc 
     drawStats()
     drawProgressBar()
+    // upgrades.forEach((upg) =>{
+     
+    //   console.log(upg.name)
+    //   if (player.money >= upg.price && upg.name == "rolling") {
+    //     let buttonElem = document.getElementById("upg-btn-1")
+    //     buttonElem.disabled = false
+    //   } else {
+    //     let buttonElem = document.getElementById("upg-btn-1")
+    //     buttonElem.disabled = true
+    //   }
+    //   if (player.money >= upg.price && upg.name == "tecate") {
+    //     let buttonElem = document.getElementById("upg-btn-2")
+    //     buttonElem.disabled = false
+    //   } else {
+    //     let buttonElem = document.getElementById("upg-btn-2")
+    //     buttonElem.disabled = true
+    //   }
+    //   if (player.money >= upg.price && upg.name == "chancla") {
+    //     let buttonElem = document.getElementById("upg-btn-3")
+    //     buttonElem.disabled = false
+    //   } else {
+    //     let buttonElem = document.getElementById("upg-btn-3")
+    //     buttonElem.disabled = true
+    //   }
+    //   if (player.money >= upg.price && upg.name == "assistant") {
+    //     let buttonElem = document.getElementById("upg-btn-4")
+    //     buttonElem.disabled = false
+    //   } else {
+    //     let buttonElem = document.getElementById("upg-btn-4")
+    //     buttonElem.disabled = true
+    //   }
+    // })
   }
 }
+
 
 // refactoring function -- not using yet
 function buyUpgrade(upgradeName){
@@ -190,7 +227,7 @@ function upgradeChanclaPower(){
 }
 function upgradeTortillaMaker(){
   if (upgrades[3].auto <= 0) {
-    upgrades[3].auto = 50
+    upgrades[3].auto = 25
   }
   console.log(upgrades[3].loop)
   if (player.money >= upgrades[3].price){
@@ -201,7 +238,7 @@ function upgradeTortillaMaker(){
     playSound("cash-register")
     upgrades[3].loop = setInterval(assistantLoop, 3000)
     player.money -= upgrades[3].price
-    upgrades[3].price += upgrades[3].price
+    upgrades[3].price = upgrades[3].price * upgrades[3].quantity
     upgrades[0].isPurchased = true
     drawStats()
   } else {
@@ -235,40 +272,40 @@ function increaseLevel() {
     player.clickMultiplier = 1.5
   } else if (game.level == 15) {
     player.clickMultiplier = 2
-  } else if (game.level == 15){
+  } else if (game.level == 20){
     player.clickMultiplier = 3
   }
 
+  if (game.level >= 5) {
+    game.demand += 2000
+  }
   if (game.level >= 10) {
-    game.demand += 10
+    game.demand += 5000
   }
     
   if (game.level >= 15) {
-    game.demand += 10
+    game.demand += 6000
   }
 
   if (game.level >= 20) {
-    game.demand += 10
+    game.demand += 12000
   }
 
   if (game.level >= 25) {
-    game.demand += 10
+    game.demand += 12000
   }
 
   if (game.level >= 30) {
-    game.demand += 10
+    game.demand += 12000
   }
 
   
   game.level++
-  game.demand += 5
+  game.demand += 25
   game.clickCount = 0
   game.timer = 30
-  console.log(game.level, game.demand)
-  if (game.level > 5) {
-    console.log(game.demand)
-    game.demand += 20
-  }
+  // console.log(game.level, game.demand)
+
 }
 
 
@@ -285,7 +322,9 @@ function drawStats() {
     document.getElementById("click-multiplier").textContent = player.clickMultiplier
     document.getElementById("auto-assist").textContent = bpc
     document.getElementById("bpc").textContent = bpc1
-
+    let demand = game.demand - game.clickCount
+    document.getElementById("burrito-demand").textContent = demand
+    
      // ADD UPGRADE TRACKER
     document.getElementById("upg1-price").textContent = upgrades[0].price 
     document.getElementById("upg2-price").textContent = upgrades[1].price
