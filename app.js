@@ -1,5 +1,5 @@
 const player = {
-  money: 0,
+  money: 100000,
   clickMultiplier: 1,
   rollingSkill: 1,
   assistantRoller: 0,
@@ -19,21 +19,21 @@ const game = {
   timeremaining: 0,
 }
 
-const upgrades = [  
+const upgrades = [
   {
     name: "rolling",
     price: 35,
     level: 0,
     bpc: 1,
     quantity: 0,
-    elem: ""
+    elem: "",
   },
   {
     name: "tecate",
     price: 200,
     level: 0,
     quantity: 0,
-    elem: ""
+    elem: "",
   },
   {
     name: "chancla",
@@ -41,7 +41,7 @@ const upgrades = [
     level: 0,
     bpc: 6,
     quantity: 0,
-    elem: ""
+    elem: "",
   },
 
   {
@@ -52,7 +52,7 @@ const upgrades = [
     auto: 0,
     loop: 0,
     quantity: 0,
-    elem: ""
+    elem: "",
   },
 ]
 
@@ -68,7 +68,7 @@ const levelUp = [
   },
   {
     gif: "burrito-forever.gif",
-  }
+  },
 ]
 // SECTION
 
@@ -88,27 +88,27 @@ function resetGame() {
   playSound("game-over")
   upgrades[3].auto = 0
   game.started = false
-  game.timer = 10
+  game.timer = 30
+  player.clickMultiplier = 1
   hideItem("upgrade-tecate")
   hideItem("upgrade-chancla")
   hideItem("upgrade-assistant")
   player.money = 0
   game.level = 1
-  clearInterval(upgrades[3].loop)
-  clearInterval(game.loop)
-  clearInterval
-  resetUpgrades()
   let buttonElem = document.getElementById("btn-start")
   buttonElem.disabled = false
+  clearInterval(upgrades[3].loop)
+  clearInterval(game.loop)
+
+  resetUpgrades()
   alert("game over")
 }
 
-function assistantLoop(){
+function assistantLoop() {
   let bpc = upgrades[3].auto * upgrades[3].level
   player.money += bpc
   game.clickCount += bpc
   drawProgressBar()
-  
 }
 
 // SECTION // GAME LOGIC
@@ -133,11 +133,11 @@ function rollBurrito() {
     const clicks = player.bpc * clickMultiplier
     game.clickCount += clicks
     playSound("click")
-    player.money += player.bpc 
+    player.money += player.bpc
     drawStats()
     drawProgressBar()
     // upgrades.forEach((upg) =>{
-     
+
     //   console.log(upg.name)
     //   if (player.money >= upg.price && upg.name == "rolling") {
     //     let buttonElem = document.getElementById("upg-btn-1")
@@ -171,21 +171,20 @@ function rollBurrito() {
   }
 }
 
-
 // refactoring function -- not using yet
-function buyUpgrade(upgradeName){
-  let upgrade = upgrades.find(upg => upg.name == upgradeName)
+function buyUpgrade(upgradeName) {
+  let upgrade = upgrades.find((upg) => upg.name == upgradeName)
   if (player.money >= upgrade.price) {
     player.money -= upgrade.price
     playSound("cash-register")
     upgrade.level++
-    upgrade.price *= 2    
+    upgrade.price *= 2
   }
 }
 
-function upgradeBurritoRolling(){
+function upgradeBurritoRolling() {
   // index 0
-  if (player.money >= upgrades[0].price){
+  if (player.money >= upgrades[0].price) {
     playSound("cash-register")
     upgrades[0].quantity++
     player.money -= upgrades[0].price
@@ -198,8 +197,8 @@ function upgradeBurritoRolling(){
   }
 }
 
-function upgradeDrinkTecate(){
-  if (player.money >= upgrades[1].price){
+function upgradeDrinkTecate() {
+  if (player.money >= upgrades[1].price) {
     showItem("upgrade-tecate")
     playSound("cash-register")
     upgrades[1].quantity++
@@ -212,8 +211,8 @@ function upgradeDrinkTecate(){
     console.log("not enough cash")
   }
 }
-function upgradeChanclaPower(){
-  if (player.money >= upgrades[2].price){
+function upgradeChanclaPower() {
+  if (player.money >= upgrades[2].price) {
     showItem("upgrade-chancla")
     playSound("cash-register")
     upgrades[2].quantity++
@@ -225,12 +224,12 @@ function upgradeChanclaPower(){
     console.log("not enough cash")
   }
 }
-function upgradeTortillaMaker(){
+function upgradeTortillaMaker() {
   if (upgrades[3].auto <= 0) {
     upgrades[3].auto = 50
   }
   console.log(upgrades[3].loop)
-  if (player.money >= upgrades[3].price){
+  if (player.money >= upgrades[3].price) {
     clearInterval(upgrades[3].loop)
     upgrades[3].quantity++
     upgrades[3].level++
@@ -246,33 +245,36 @@ function upgradeTortillaMaker(){
   }
 }
 
-function resetUpgrades(){
+function resetUpgrades() {
   player.money = 0
   upgrades[0].isPurchased = false
   upgrades[0].price = 50
   upgrades[1].price = 200
   upgrades[2].price = 300
   upgrades[3].price = 1000
-  upgrades.foreach((upgrade) =>{
-    console.log(upgrade.quantity, upgrade.level);
+  upgrades.foreach((upgrade) => {
+    console.log(upgrade.quantity, upgrade.level)
     upgrade.quantity = 0
     upgrade.level = 0
   })
   drawStats()
 }
+
 function increaseLevel() {
   // if (document.getElementById("level-up").display == "none")
   playSound("levelup-sound")
   document.getElementById("progress-bar").style.width = "0%"
-  random = randomNumber(0,3)
-  document.getElementById("level-up").innerHTML = `<img id="level-up-gif" class="img-fluid p-2" src="assets/levelup/${levelUp[random].gif}" alt="" />`
-  console.log(levelUp[random].gif);
+  random = randomNumber(0, 3)
+  document.getElementById(
+    "level-up"
+  ).innerHTML = `<img id="level-up-gif" class="img-fluid p-2" src="assets/levelup/${levelUp[random].gif}" alt="" />`
+  console.log(levelUp[random].gif)
   showItem("level-up-gif")
   if (game.level == 10) {
     player.clickMultiplier = 1.5
   } else if (game.level == 15) {
     player.clickMultiplier = 2
-  } else if (game.level == 20){
+  } else if (game.level == 20) {
     player.clickMultiplier = 3
   }
 
@@ -282,7 +284,7 @@ function increaseLevel() {
   if (game.level >= 10) {
     game.demand += 5000
   }
-    
+
   if (game.level >= 15) {
     game.demand += 6000
   }
@@ -299,15 +301,12 @@ function increaseLevel() {
     game.demand += 12000
   }
 
-  
   game.level++
   game.demand += 25
   game.clickCount = 0
   game.timer = 30
   // console.log(game.level, game.demand)
-
 }
-
 
 // SECTION
 // DRAW FUNCTIONS AND DOM MANIPULATION
@@ -315,32 +314,36 @@ function increaseLevel() {
 function drawStats() {
   let bpc = upgrades[3].auto * upgrades[3].level
   let bpc1 = player.bpc * player.clickMultiplier
-    document.getElementById("level").textContent = game.level
-    document.getElementById("money").textContent = player.money
-    document.getElementById("time-remaining").textContent = game.timer
-    // document.getElementById("click-power").textContent = player.clickMultiplier
-    document.getElementById("click-multiplier").textContent = player.clickMultiplier
-    document.getElementById("auto-assist").textContent = bpc
-    document.getElementById("bpc").textContent = bpc1
-    let demand = game.demand - game.clickCount
-    document.getElementById("burrito-demand").textContent = demand
-    
-     // ADD UPGRADE TRACKER
-    document.getElementById("upg1-price").textContent = upgrades[0].price 
-    document.getElementById("upg2-price").textContent = upgrades[1].price
-    document.getElementById("upg3-price").textContent = upgrades[2].price
-    document.getElementById("upg4-price").textContent = upgrades[3].price
+  document.getElementById("level").textContent = game.level
+  document.getElementById("money").textContent = player.money
+  document.getElementById("time-remaining").textContent = game.timer
+  // document.getElementById("click-power").textContent = player.clickMultiplier
+  document.getElementById("click-multiplier").textContent =
+    player.clickMultiplier
+  document.getElementById("auto-assist").textContent = bpc
+  document.getElementById("bpc").textContent = bpc1
+  let demand = game.demand - game.clickCount
+  document.getElementById("burrito-demand").textContent = demand
 
-    document.getElementById("upg1-level").textContent = upgrades[0].quantity
-    document.getElementById("upg2-level").textContent = upgrades[1].quantity
-    document.getElementById("upg3-level").textContent = upgrades[2].quantity
-    document.getElementById("upg4-level").textContent = upgrades[3].quantity
-  
+  // ADD UPGRADE TRACKER
+  document.getElementById("upg1-price").textContent = upgrades[0].price
+  document.getElementById("upg2-price").textContent = upgrades[1].price
+  document.getElementById("upg3-price").textContent = upgrades[2].price
+  document.getElementById("upg4-price").textContent = upgrades[3].price
+
+  document.getElementById("upg1-level").textContent = upgrades[0].quantity
+  document.getElementById("upg2-level").textContent = upgrades[1].quantity
+  document.getElementById("upg3-level").textContent = upgrades[2].quantity
+  document.getElementById("upg4-level").textContent = upgrades[3].quantity
 }
 
 function drawProgressBar() {
   let percentage = (game.clickCount / game.demand) * 100
-  console.log(game.demand, "<--game demand, percentage of prog bar -->", percentage);
+  console.log(
+    game.demand,
+    "<--game demand, percentage of prog bar -->",
+    percentage
+  )
   document.getElementById("progress-bar").style.width = percentage + "%"
   if (percentage >= 100) {
     // document.getElementById("progress-bar").style.width = "100%"
@@ -353,21 +356,19 @@ function drawProgressBar() {
 
 function hideItem(elementID) {
   element = document.getElementById(elementID)
-    element.setAttribute("hidden", "")
+  element.setAttribute("hidden", "")
 }
 
-function showItem(elementID){
+function showItem(elementID) {
   element = document.getElementById(elementID)
-  element.style.display = 'block'
+  element.style.display = "block"
 }
-
-
 
 function playSound(soundId) {
   document.getElementById(soundId).play()
 }
 
-function loadMusic(){
+function loadMusic() {
   document.getElementById("music").play()
 }
 // SECTION MATH FUNCTIONS
