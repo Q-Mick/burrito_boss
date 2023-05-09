@@ -1,5 +1,5 @@
 const player = {
-  money: 100000,
+  money: 0,
   clickMultiplier: 1,
   rollingSkill: 1,
   assistantRoller: 0,
